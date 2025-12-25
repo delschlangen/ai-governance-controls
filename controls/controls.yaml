@@ -1,0 +1,133 @@
+# AI Governance Control Catalog
+# Version 1.0
+# Maps to NIST AI RMF and EU AI Act requirements
+
+version: "1.0"
+last_updated: "2024-12-24"
+maintainer: "Del Schlangen"
+
+controls:
+  # === GOVERNANCE & ACCOUNTABILITY ===
+  - id: GOV-01
+    title: System owner assigned
+    requirement: A named accountable owner exists for the system.
+    evidence: system_profile.owner
+    severity: high
+    nist_ai_rmf: ["GOVERN 1.1", "GOVERN 1.2"]
+    eu_ai_act_article: "Art. 16 - Provider obligations"
+
+  - id: GOV-02
+    title: Data inventory exists
+    requirement: System maintains an inventory of data types processed.
+    evidence: system_profile.data_inventory
+    severity: high
+    nist_ai_rmf: ["MAP 1.1", "MAP 1.5"]
+    eu_ai_act_article: "Art. 10 - Data governance"
+
+  - id: GOV-03
+    title: Logging enabled
+    requirement: Security-relevant events are logged with retention policy.
+    evidence: system_profile.logging
+    severity: medium
+    nist_ai_rmf: ["MEASURE 2.3", "MANAGE 2.2"]
+    eu_ai_act_article: "Art. 12 - Record-keeping"
+
+  - id: GOV-04
+    title: Model change control
+    requirement: Model updates require documented review/approval.
+    evidence: system_profile.change_control
+    severity: high
+    nist_ai_rmf: ["GOVERN 1.4", "MANAGE 1.3"]
+    eu_ai_act_article: "Art. 9 - Risk management system"
+
+  - id: GOV-05
+    title: Incident response playbook
+    requirement: A playbook exists with roles + escalation path.
+    evidence: system_profile.ir_playbook
+    severity: high
+    nist_ai_rmf: ["MANAGE 4.1", "MANAGE 4.2"]
+    eu_ai_act_article: "Art. 62 - Reporting of serious incidents"
+
+  # === VENDOR & ACCESS ===
+  - id: GOV-06
+    title: Vendor due diligence
+    requirement: Vendors have documented security + privacy review.
+    evidence: system_profile.vendor_review
+    severity: medium
+    nist_ai_rmf: ["GOVERN 6.1", "MAP 3.4"]
+    eu_ai_act_article: "Art. 25 - Responsibilities along the AI value chain"
+
+  - id: GOV-07
+    title: Access control
+    requirement: Role-based access and least privilege for admin functions.
+    evidence: system_profile.access_control
+    severity: high
+    nist_ai_rmf: ["GOVERN 1.5", "MANAGE 2.4"]
+    eu_ai_act_article: "Art. 9 - Risk management system"
+
+  # === DATA MANAGEMENT ===
+  - id: GOV-08
+    title: Data retention defined
+    requirement: Retention periods exist for all stored data categories.
+    evidence: system_profile.retention
+    severity: medium
+    nist_ai_rmf: ["GOVERN 1.6", "MAP 1.5"]
+    eu_ai_act_article: "Art. 10 - Data governance"
+
+  # === MONITORING & TRANSPARENCY ===
+  - id: GOV-09
+    title: Monitoring & alerting
+    requirement: Alerts exist for abnormal patterns and failures.
+    evidence: system_profile.monitoring
+    severity: medium
+    nist_ai_rmf: ["MEASURE 2.3", "MANAGE 2.2"]
+    eu_ai_act_article: "Art. 9 - Risk management system"
+
+  - id: GOV-10
+    title: User-facing transparency
+    requirement: Users are informed of key system behaviors/limits.
+    evidence: system_profile.transparency
+    severity: low
+    nist_ai_rmf: ["MAP 1.6", "MANAGE 3.1"]
+    eu_ai_act_article: "Art. 13 - Transparency and provision of information"
+
+  # === AI-SPECIFIC CONTROLS ===
+  - id: GOV-11
+    title: Model documentation
+    requirement: Model cards or system cards exist documenting intended use, limitations, and performance metrics.
+    evidence: system_profile.model_card
+    severity: high
+    nist_ai_rmf: ["MAP 1.1", "MAP 1.3", "MEASURE 2.1"]
+    eu_ai_act_article: "Art. 11 - Technical documentation"
+
+  - id: GOV-12
+    title: Training data provenance
+    requirement: Training data sources are documented with licensing and consent status.
+    evidence: system_profile.data_provenance
+    severity: high
+    nist_ai_rmf: ["MAP 1.5", "MEASURE 2.6"]
+    eu_ai_act_article: "Art. 10 - Data governance"
+
+  - id: GOV-13
+    title: Bias and fairness testing
+    requirement: Demographic performance disparities are measured and documented pre-deployment.
+    evidence: system_profile.fairness_eval
+    severity: high
+    nist_ai_rmf: ["MEASURE 2.10", "MEASURE 2.11"]
+    eu_ai_act_article: "Art. 10(2)(f) - Examination for bias"
+
+  - id: GOV-14
+    title: Human oversight mechanism
+    requirement: High-risk decisions have a defined human review pathway.
+    evidence: system_profile.human_oversight
+    severity: high
+    nist_ai_rmf: ["GOVERN 1.3", "MANAGE 2.1"]
+    eu_ai_act_article: "Art. 14 - Human oversight"
+
+  - id: GOV-15
+    title: Output monitoring
+    requirement: System outputs are sampled and reviewed for harmful or off-policy content.
+    evidence: system_profile.output_monitoring
+    severity: medium
+    nist_ai_rmf: ["MEASURE 2.3", "MANAGE 2.2"]
+    eu_ai_act_article: "Art. 9 - Risk management system"

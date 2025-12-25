@@ -1,0 +1,115 @@
+{
+  "system_name": "Acme Risk Triage",
+  "system_description": "ML-powered ticket routing and priority classification for customer support",
+  "deployment_date": "2024-03-15",
+  "risk_tier": "high",
+  
+  "owner": "Program Manager, Trust Ops",
+  
+  "data_inventory": [
+    "support_tickets",
+    "account_metadata", 
+    "interaction_history",
+    "model_predictions"
+  ],
+  
+  "logging": {
+    "enabled": true,
+    "retention_days": 90,
+    "includes_model_inputs": true,
+    "includes_model_outputs": true
+  },
+  
+  "change_control": {
+    "exists": true,
+    "approver_role": "Risk Committee",
+    "requires_testing": true,
+    "rollback_procedure": true
+  },
+  
+  "ir_playbook": {
+    "exists": true,
+    "pager_rotation": true,
+    "escalation_path": ["On-call Engineer", "Trust Ops Lead", "CISO"],
+    "last_drill": "2024-09-01"
+  },
+  
+  "vendor_review": {
+    "exists": false
+  },
+  
+  "access_control": {
+    "rbac": true,
+    "mfa_admin": true,
+    "roles_defined": ["viewer", "operator", "admin", "model_deployer"]
+  },
+  
+  "retention": {
+    "support_tickets_days": 365,
+    "account_metadata_days": 730,
+    "model_predictions_days": 90
+  },
+  
+  "monitoring": {
+    "alerts": [
+      "error_rate_spike",
+      "latency_spike",
+      "prediction_drift",
+      "fairness_metric_deviation"
+    ]
+  },
+  
+  "transparency": {
+    "notice_url": "https://example.com/ai-notice",
+    "user_informed_of_ai": true,
+    "opt_out_available": false
+  },
+  
+  "model_card": {
+    "exists": true,
+    "location": "https://internal.example.com/docs/risk-triage-model-card",
+    "last_updated": "2024-06-01",
+    "includes_limitations": true,
+    "includes_performance_metrics": true
+  },
+  
+  "data_provenance": {
+    "documented": true,
+    "sources": [
+      {
+        "name": "Historical support tickets",
+        "consent_basis": "Legitimate interest",
+        "license": "Internal data"
+      },
+      {
+        "name": "Public benchmark dataset",
+        "consent_basis": "Public domain",
+        "license": "CC-BY-4.0"
+      }
+    ],
+    "pii_handling": "Pseudonymized before training"
+  },
+  
+  "fairness_eval": {
+    "conducted": true,
+    "last_evaluation": "2024-05-15",
+    "metrics_measured": ["demographic_parity", "equalized_odds"],
+    "protected_attributes": ["account_region", "account_tier"],
+    "findings_documented": true,
+    "remediation_applied": true
+  },
+  
+  "human_oversight": {
+    "exists": true,
+    "mechanism": "High-priority predictions require human review",
+    "threshold": "confidence < 0.85 OR escalation_flag = true",
+    "reviewer_role": "Trust Ops Analyst"
+  },
+  
+  "output_monitoring": {
+    "enabled": true,
+    "sample_rate": 0.05,
+    "review_frequency": "weekly",
+    "escalation_criteria": ["offensive_content", "pii_leakage", "policy_violation"]
+  }
+}
