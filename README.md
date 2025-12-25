@@ -4,6 +4,10 @@
 
 A practical toolkit demonstrating how to operationalize AI governance frameworks (NIST AI RMF, EU AI Act) into machine-readable control catalogs with automated compliance evaluation.
 
+[![Try It Live](https://img.shields.io/badge/Try%20It%20Live-Visit%20Site-blue?style=for-the-badge)](https://delschlangen.github.io/ai-governance-controls)
+
+> **[Use the interactive evaluator →](https://delschlangen.github.io/ai-governance-controls)** — No installation required. Paste your system profile JSON and get instant compliance results in your browser.
+
 ## Why This Exists
 
 Policy documents don't protect anyone—implemented controls do. This repo bridges the gap between governance frameworks sitting in PDFs and operational compliance that can be tested, measured, and reported. Built from experience translating complex risk requirements into actionable product capabilities.
@@ -330,6 +334,15 @@ All tools use consistent exit codes for scripting:
 - [ ] Generate executive-ready PDF reports
 - [ ] Add evidence attachment support (links to artifacts)
 - [ ] Web dashboard for multi-system tracking
+
+## Live Demo
+
+Use this tool directly in your browser: **https://delschlangen.github.io/ai-governance-controls**
+
+No installation or dependencies required. Simply:
+1. Paste your system profile JSON (or load the sample)
+2. Click "Evaluate Compliance"
+3. View pass/fail results, risk tier classification, and remediation guidance
 
 ## Related Frameworks
 
