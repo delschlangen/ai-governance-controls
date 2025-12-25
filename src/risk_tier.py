@@ -12,12 +12,23 @@ Risk Tiers (EU AI Act):
 
 This is a simplified classifier for demonstration. Real classification requires
 legal analysis of the specific use case against Annex III categories.
+
+Usage:
+    python risk_tier.py [OPTIONS]
+
+Options:
+    -p, --profile PATH    Path to system profile JSON (default: sample_system_profile.json)
+    -f, --format FORMAT   Output format: table, json (default: table)
+    -o, --output PATH     Output file path (optional)
+    -q, --quiet           Minimal output
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
 from typing import Dict, Any, List, Tuple
+from datetime import datetime
 
 
 # Annex III high-risk categories (simplified)
@@ -230,19 +241,126 @@ def print_classification_report(profile: Dict[str, Any]):
                 print(f"- ❌ {requirement_names.get(gap, gap)}: Evidence missing or insufficient")
 
 
+def generate_json_report(profile: Dict[str, Any]) -> str:
+    """Generate a JSON classification report."""
+    tier, reasons, obligations = classify_risk_tier(profile)
+
+    report = {
+        "metadata": {
+            "system_name": profile.get("system_name", "Unknown"),
+            "system_description": profile.get("system_description", ""),
+            "classified_at": datetime.now().isoformat()
+        },
+        "classification": {
+            "risk_tier": tier,
+            "reasons": reasons,
+            "obligations": obligations
+        }
+    }
+
+    # Add high-risk compliance if applicable
+    if tier == "high":
+        compliance = evaluate_high_risk_compliance(profile)
+        report["high_risk_compliance"] = compliance
+
+    return json.dumps(report, indent=2)
+
+
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Classify AI systems under EU AI Act risk tiers",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Classify default sample profile
+  python risk_tier.py
+
+  # Classify a specific profile
+  python risk_tier.py -p my_system.json
+
+  # Output as JSON
+  python risk_tier.py -p my_system.json -f json
+
+  # Save report to file
+  python risk_tier.py -p my_system.json -o classification.json -f json
+"""
+    )
+
+    parser.add_argument(
+        "-p", "--profile",
+        type=Path,
+        help="Path to system profile JSON (default: sample_system_profile.json)"
+    )
+    parser.add_argument(
+        "-f", "--format",
+        choices=["table", "json"],
+        default="table",
+        help="Output format (default: table)"
+    )
+    parser.add_argument(
+        "-o", "--output",
+        type=Path,
+        help="Output file path (optional)"
+    )
+    parser.add_argument(
+        "-q", "--quiet",
+        action="store_true",
+        help="Minimal output"
+    )
+
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
     script_dir = Path(__file__).parent
-    
-    # Load profile
-    profile_path = script_dir / "sample_system_profile.json"
+
+    # Determine profile path
+    if args.profile:
+        profile_path = args.profile
+    else:
+        profile_path = script_dir / "sample_system_profile.json"
+
     if not profile_path.exists():
         print(f"ERROR: Profile not found at {profile_path}")
         sys.exit(1)
-    
+
     with open(profile_path) as f:
         profile = json.load(f)
-    
-    print_classification_report(profile)
+
+    # Generate output
+    if args.format == "json":
+        output = generate_json_report(profile)
+        if not args.quiet:
+            print(output)
+    else:
+        if not args.quiet:
+            print_classification_report(profile)
+
+    # Save to file if specified
+    if args.output:
+        if args.format == "json":
+            content = generate_json_report(profile)
+        else:
+            # For table format, we save as JSON anyway
+            content = generate_json_report(profile)
+
+        with open(args.output, "w") as f:
+            f.write(content)
+        if not args.quiet:
+            print(f"\nReport saved to: {args.output}")
+
+    # Exit with code based on risk tier
+    tier, _, _ = classify_risk_tier(profile)
+    if tier == "unacceptable":
+        sys.exit(2)  # Prohibited
+    elif tier == "high":
+        compliance = evaluate_high_risk_compliance(profile)
+        if compliance["compliance_rate"] < 100:
+            sys.exit(1)  # High-risk with gaps
+
+    sys.exit(0)
 
 
 if __name__ == "__main__":
