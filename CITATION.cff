@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: AI Governance Controls
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - family-names: Schlangen
+    given-names: Del
+    orcid: "https://orcid.org/0009-0005-5116-9564"
+repository-code: "https://github.com/delschlangen/ai-governance-controls"
+url: "https://delschlangen.github.io/ai-governance-controls"
+abstract: >-
+  A practical toolkit for operationalizing AI governance frameworks
+  (NIST AI RMF, EU AI Act) into machine-readable, auditable control
+  catalogs with automated compliance evaluation. Includes 15 governance
+  controls mapped to regulatory requirements, severity-weighted scoring,
+  EU AI Act risk tier classification, and actionable remediation guidance.
+keywords:
+  - ai-governance
+  - nist-ai-rmf
+  - eu-ai-act
+  - compliance
+  - risk-management
+  - machine-learning
+  - responsible-ai
+  - ai-ethics
+  - model-governance
+  - regulatory-compliance
+  - audit
+  - controls
+license: MIT
+version: "1.0.0"
+date-released: "2024-12-24"
