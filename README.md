@@ -2,9 +2,13 @@
 
 **Translate AI governance requirements into auditable, testable controls.**
 
-A practical toolkit demonstrating how to operationalize AI governance frameworks (NIST AI RMF, EU AI Act) into machine-readable control catalogs with automated compliance evaluation.
-
 [![Try It Live](https://img.shields.io/badge/Try%20It%20Live-Visit%20Site-blue?style=for-the-badge)](https://delschlangen.github.io/ai-governance-controls)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![NIST AI RMF](https://img.shields.io/badge/NIST-AI%20RMF-orange.svg)](https://www.nist.gov/itl/ai-risk-management-framework)
+[![EU AI Act](https://img.shields.io/badge/EU-AI%20Act-purple.svg)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+
+A practical toolkit for **AI risk management**, **regulatory compliance**, and **model governance**. Operationalize frameworks like the **NIST AI Risk Management Framework** and **EU AI Act** into machine-readable control catalogs with automated compliance evaluation, severity-weighted scoring, and actionable remediation guidance.
 
 > **[Use the interactive evaluator →](https://delschlangen.github.io/ai-governance-controls)** — No installation required. Paste your system profile JSON and get instant compliance results in your browser.
 
@@ -16,7 +20,7 @@ Policy documents don't protect anyone—implemented controls do. This repo bridg
 
 ```bash
 # Clone
-git clone https://github.com/YOUR_USERNAME/ai-governance-controls.git
+git clone https://github.com/delschlangen/ai-governance-controls.git
 cd ai-governance-controls
 
 # Install dependency
@@ -352,8 +356,24 @@ No installation or dependencies required. Simply:
 
 ## License
 
-MIT License - See [LICENSE](LICENSE)
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## Citation
+
+If you use this toolkit in your research or work, please cite it:
+
+```bibtex
+@software{schlangen2024aigovernance,
+  author = {Schlangen, Del},
+  title = {AI Governance Controls},
+  year = {2024},
+  url = {https://github.com/delschlangen/ai-governance-controls},
+  version = {1.0.0}
+}
+```
+
+See [CITATION.cff](CITATION.cff) for more citation formats.
 
 ---
 
-*Built by Del Schlangen | [LinkedIn](https://linkedin.com/in/del-s-759557175/)*
+*Built by [Del Schlangen](https://linkedin.com/in/del-s-759557175/) | ORCID [0009-0005-5116-9564](https://orcid.org/0009-0005-5116-9564)*
